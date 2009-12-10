@@ -3,7 +3,7 @@
 //  WaveMenu
 //
 //  Created by Adam McNeeney on 10/12/2009.
-//  Copyright Transitive Ltd. 2009. All rights reserved.
+//  Copyright 2009 Adam McNeeney. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
