@@ -41,12 +41,14 @@
   
   [newMenu addItem:[NSMenuItem separatorItem]];
 
+  menuItem = [newMenu addItemWithTitle:@"About WaveMenu..." action:@selector(openAboutWaveMenu:) keyEquivalent:@""];
+  [menuItem setTarget:self];  
   menuItem = [newMenu addItemWithTitle:@"Preferences..." action:@selector(openPreferences:) keyEquivalent:@""];
   [menuItem setTarget:self];
 
   [newMenu addItem:[NSMenuItem separatorItem]];
 
-  menuItem = [newMenu addItemWithTitle:@"Quit WaveMenu..." action:@selector(quitWaveMenu:) keyEquivalent:@""];
+  menuItem = [newMenu addItemWithTitle:@"Quit WaveMenu..." action:@selector(quitWaveMenu:) keyEquivalent:@"q"];
   [menuItem setTarget:self];
   
   return newMenu;
@@ -55,5 +57,13 @@
 {
   NSLog(@"Validating menu item.");
   return TRUE;
+}
+- (void)openGoogleWave:(id)sender
+{
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://wave.google.com/"]];
+}
+- (void)quitWaveMenu:(id)sender
+{
+  [NSApp terminate:sender];
 }
 @end
