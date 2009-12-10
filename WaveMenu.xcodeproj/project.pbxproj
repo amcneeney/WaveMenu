@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		662BC50E10D148EB00DBD774 /* WaveStatusRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 662BC50D10D148EB00DBD774 /* WaveStatusRetriever.m */; };
 		6636060210D13C940013918E /* TrayMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6636060110D13C940013918E /* TrayMenu.m */; };
 		6636060910D13E850013918E /* ApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6636060810D13E850013918E /* ApplicationDelegate.m */; };
 		6636061410D142B70013918E /* WaveGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 6636061310D142B70013918E /* WaveGrey.png */; };
@@ -25,6 +26,8 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* WaveMenu_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveMenu_Prefix.pch; sourceTree = "<group>"; };
+		662BC50C10D148EB00DBD774 /* WaveStatusRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveStatusRetriever.h; sourceTree = "<group>"; };
+		662BC50D10D148EB00DBD774 /* WaveStatusRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveStatusRetriever.m; sourceTree = "<group>"; };
 		6636060010D13C940013918E /* TrayMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrayMenu.h; sourceTree = "<group>"; };
 		6636060110D13C940013918E /* TrayMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrayMenu.m; sourceTree = "<group>"; };
 		6636060710D13E850013918E /* ApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +54,8 @@
 			children = (
 				6636060010D13C940013918E /* TrayMenu.h */,
 				6636060110D13C940013918E /* TrayMenu.m */,
+				662BC50C10D148EB00DBD774 /* WaveStatusRetriever.h */,
+				662BC50D10D148EB00DBD774 /* WaveStatusRetriever.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				6636060210D13C940013918E /* TrayMenu.m in Sources */,
 				6636060910D13E850013918E /* ApplicationDelegate.m in Sources */,
+				662BC50E10D148EB00DBD774 /* WaveStatusRetriever.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

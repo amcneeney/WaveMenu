@@ -7,7 +7,7 @@
 //
 
 #import "TrayMenu.h"
-
+#import "WaveStatusRetriever.h"
 
 @implementation TrayMenu
 - (TrayMenu*) init
@@ -25,6 +25,10 @@
   [_statusItem setImage:[NSImage imageNamed:@"WaveGrey"]];
   //[_statusItem setTitle:@"W"];
   [_statusItem retain];
+  
+  // Start status retriever.
+  WaveStatusRetriever* wsr = [[WaveStatusRetriever alloc] init];
+  [wsr startRunLoop];
   
   return self;
 }
