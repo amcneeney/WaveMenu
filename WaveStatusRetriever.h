@@ -14,6 +14,10 @@
   id delegate;
   NSAutoreleasePool* pool;
   NSThread* runLoopThread;
+  
+  NSURLConnection* waveDownloader;
+  NSMutableData* waveData;
 }
+- (void)refreshWaveData:(id)sender;
 - (void) startRunLoop;
 @end
