@@ -13,6 +13,7 @@
 @private
   NSStatusItem* _statusItem;
   NSMenu* menu;
+  NSMenuItem* statusMenuItem;
 }
 - (NSMenu*) createMenu;
 

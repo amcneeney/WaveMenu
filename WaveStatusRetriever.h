@@ -20,6 +20,8 @@
   
   SBJSON *jsonParser;
 }
+@property (retain) id delegate;
+- (WaveStatusRetriever*)initWithDelegate:(id)newDelegate;
 - (void)refreshWaveData:(id)sender;
-- (void) startRunLoop;
+- (void)startRunLoop;
 @end

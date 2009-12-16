@@ -8,6 +8,7 @@
 
 #import "TrayMenu.h"
 #import "WaveStatusRetriever.h"
+#import "Wave.h"
 
 @implementation TrayMenu
 - (TrayMenu*) init
@@ -27,7 +28,7 @@
   [_statusItem retain];
   
   // Start status retriever.
-  WaveStatusRetriever* wsr = [[WaveStatusRetriever alloc] init];
+  WaveStatusRetriever* wsr = [[WaveStatusRetriever alloc] initWithDelegate:self];
   [wsr startRunLoop];
   
   return self;
@@ -39,6 +40,9 @@
   NSMenu* newMenu = [[NSMenu allocWithZone:menuZone] init];
 
   NSMenuItem *menuItem;
+  
+  statusMenuItem = [[newMenu addItemWithTitle:@"Wave Status" action:nil keyEquivalent:@""] retain];
+  [newMenu addItem:[NSMenuItem separatorItem]];
   
   menuItem = [newMenu addItemWithTitle:@"Open Google Wave..." action:@selector(openGoogleWave:) keyEquivalent:@""];
   [menuItem setTarget:self];
@@ -59,15 +63,63 @@
 }
 - (BOOL) validateMenuItem:(NSMenuItem *)inItem 
 {
-  NSLog(@"Validating menu item.");
   return TRUE;
 }
+
+#pragma mark Menu Methods
+
 - (void)openGoogleWave:(id)sender
 {
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://wave.google.com/"]];
 }
+
 - (void)quitWaveMenu:(id)sender
 {
   [NSApp terminate:sender];
+}
+
+#pragma mark Wave Retrieval Delegate Methods
+
+- (void)waveDataRetrievalStarted
+{
+  [statusMenuItem setTitle:@"Retrieving data..."];
+}
+
+- (void)waveDataRetrievalError:(NSError*)error
+{
+  [statusMenuItem setTitle:[error localizedDescription]];  
+}
+
+- (void)waveDataRetrievalComplete:(NSArray*)messages
+{
+  Wave* wave;
+  NSInteger unreadMessages = 0;
+  NSInteger unreadBlips = 0;
+  for (wave in messages)
+  {
+    //NSLog(@"Got message %d/%d: %@", [wave unreadCount], [wave totalCount], [wave title]);
+    NSInteger uc = [wave unreadCount];
+    if (uc > 0)
+    {
+      unreadBlips += uc;
+      unreadMessages++;
+    }
+  }
+  
+  if (0 == unreadMessages)
+  {
+    [statusMenuItem setTitle:@"No unread waves"];
+  }
+  else
+  {
+    [statusMenuItem setTitle:
+     	[NSString stringWithFormat:@"%d unread blip%@ in %d wave%@",
+                                 unreadBlips,
+                                 unreadBlips == 1 ? @"" : @"s",
+                                 unreadMessages,
+                                 unreadMessages == 1 ? @"" : @"s"
+    	]
+    ];
+  }
 }
 @end

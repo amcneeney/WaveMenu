@@ -7,16 +7,26 @@
 //
 
 #import "WaveStatusRetriever.h"
-
+#import "Wave.h"
 
 @implementation WaveStatusRetriever
+@synthesize delegate;
+
 - (WaveStatusRetriever*)init
 {
   [super init];
   
+  delegate = 0;
   waveDownloader = 0;
   
   jsonParser = [[[SBJSON alloc] init] retain];
+  
+  return self;
+}
+- (WaveStatusRetriever*)initWithDelegate:(id)newDelegate
+{
+  [self init];
+  delegate = newDelegate;
   
   return self;
 }
@@ -33,6 +43,11 @@
   {
     [waveDownloader cancel];
     [waveDownloader release];
+  }
+  
+  if (delegate && [delegate respondsToSelector:@selector(waveDataRetrievalStarted)])
+  {
+    [delegate performSelector:@selector(waveDataRetrievalStarted)];
   }
   
   waveDownloader = [[NSURLConnection connectionWithRequest:theRequest delegate:self] retain];
@@ -71,7 +86,12 @@
   
   [waveData release];
   
-  // inform the user
+  if (delegate && [delegate respondsToSelector:@selector(waveDataRetrievalError:)])
+  {
+    [delegate performSelector:@selector(waveDataRetrievalError:) withObject:error];
+  }
+  
+	// Log the error.
   NSLog(@"Wave update connection failed! Error - %@ %@",
         [error localizedDescription],
         [[error userInfo] objectForKey:NSErrorFailingURLStringKey]);
@@ -79,7 +99,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-  NSLog(@"Succeeded! Received %d bytes of data",[waveData length]);
+  //NSLog(@"Succeeded! Received %d bytes of data",[waveData length]);
   
   // release the connection, and the data object
   waveDownloader = 0;
@@ -87,6 +107,8 @@
   
   // Convert to NSString.
   NSString* waveString = [[NSString alloc] initWithData:waveData encoding:NSASCIIStringEncoding];
+  
+  NSMutableArray* allMessages = [[NSMutableArray alloc] init];
   
   NSRange rangeToCheck = { 0, [waveString length] };
   while (true)
@@ -117,6 +139,7 @@
       NSLog(@"Could not parse JSON: $@", jsonObj);
       continue;
     }
+
     id pObj, messages;
     if ((pObj = [jsonObj objectForKey:@"p"]) && [pObj isKindOfClass:[NSDictionary class]])
     {
@@ -138,9 +161,10 @@
             {
               NSInteger totalCount = [totalCountNum integerValue];
               NSInteger unreadCount = [unreadCountNum integerValue];
-              if (totalCount > unreadCount && totalCount > 0 && unreadCount >= 0)
+              if (totalCount >= unreadCount && totalCount > 0 && unreadCount >= 0)
               {
-                NSLog(@"Got message %d/%d: %@", unreadCount, totalCount, title);
+                //NSLog(@"Got message %d/%d: %@", unreadCount, totalCount, title);
+                [allMessages addObject:[[Wave alloc] initWithTitle:title unreadCount:unreadCount totalCount:totalCount]];
               }
               else
               {
@@ -165,6 +189,11 @@
     rangeToCheck.location = endOfLine.location + 2;
     rangeToCheck.length = [waveString length] - rangeToCheck.location;
   }
+  
+  if (delegate && [delegate respondsToSelector:@selector(waveDataRetrievalComplete:)])
+  {
+    [delegate performSelector:@selector(waveDataRetrievalComplete:) withObject:allMessages];
+  }  
 
   // Display data.
   NSLog(@"Done parsing wave data.");
