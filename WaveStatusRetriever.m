@@ -21,31 +21,6 @@
   return self;
 }
 
-- (void)runLoop:(id)sender
-{
-  NSLog(@"Starting run loop...");
-  
-  pool = [[NSAutoreleasePool alloc] init];
-
-  [self refreshWaveData:self];
-  [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(refreshWaveData:) userInfo:nil repeats:YES];
-
-  double resolution = 300.0;
-  BOOL isRunning;
-  do {
-    // Run the loop for 'resolution' seconds.
-    NSDate* theNextDate = [NSDate dateWithTimeIntervalSinceNow:resolution]; 
-    isRunning = [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:theNextDate];
-
-    // Clear pool.
-    NSAutoreleasePool* oldPool = pool;
-    pool = [[NSAutoreleasePool alloc] init];
-    [oldPool release];
-  } while(isRunning==YES);
-    
-  [pool release];
-}
-
 - (void)refreshWaveData:(id)sender
 {
   // Grab contents of Wave site.
@@ -74,8 +49,8 @@
 
 - (void) startRunLoop
 {
-  runLoopThread = [[[NSThread alloc] initWithTarget:self selector:@selector(runLoop:) object:nil] retain];
-  [runLoopThread start];
+  [self refreshWaveData:self];
+  timer = [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(refreshWaveData:) userInfo:nil repeats:YES];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response

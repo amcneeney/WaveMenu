@@ -12,8 +12,8 @@
 @interface WaveStatusRetriever : NSObject {
 @private
   id delegate;
-  NSAutoreleasePool* pool;
-  NSThread* runLoopThread;
+  
+  NSTimer* timer;
   
   NSURLConnection* waveDownloader;
   NSMutableData* waveData;
