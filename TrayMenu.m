@@ -87,6 +87,7 @@
 
 - (void)waveDataRetrievalError:(NSError*)error
 {
+  [_statusItem setImage:[NSImage imageNamed:@"WaveRed"]];
   [statusMenuItem setTitle:[error localizedDescription]];  
 }
 
@@ -109,6 +110,7 @@
   if (0 == unreadMessages)
   {
     [statusMenuItem setTitle:@"No unread waves"];
+    [_statusItem setImage:[NSImage imageNamed:@"WaveGrey"]];
   }
   else
   {
@@ -120,6 +122,7 @@
                                  unreadMessages == 1 ? @"" : @"s"
     	]
     ];
+    [_statusItem setImage:[NSImage imageNamed:@"WaveColored"]];
   }
 }
 @end

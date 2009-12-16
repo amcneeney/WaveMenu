@@ -14,6 +14,8 @@
 		6636061410D142B70013918E /* WaveGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 6636061310D142B70013918E /* WaveGrey.png */; };
 		669AD99810D960F8001B4E59 /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669AD99710D960F8001B4E59 /* JSON.framework */; };
 		669ADA3410D97E36001B4E59 /* Wave.m in Sources */ = {isa = PBXBuildFile; fileRef = 669ADA3310D97E36001B4E59 /* Wave.m */; };
+		669ADA7D10D9870D001B4E59 /* WaveColored.png in Resources */ = {isa = PBXBuildFile; fileRef = 669ADA7B10D9870D001B4E59 /* WaveColored.png */; };
+		669ADA7E10D9870D001B4E59 /* WaveRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 669ADA7C10D9870D001B4E59 /* WaveRed.png */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -38,6 +40,8 @@
 		669AD99710D960F8001B4E59 /* JSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSON.framework; sourceTree = "<group>"; };
 		669ADA3210D97E36001B4E59 /* Wave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wave.h; sourceTree = "<group>"; };
 		669ADA3310D97E36001B4E59 /* Wave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wave.m; sourceTree = "<group>"; };
+		669ADA7B10D9870D001B4E59 /* WaveColored.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WaveColored.png; sourceTree = "<group>"; };
+		669ADA7C10D9870D001B4E59 /* WaveRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WaveRed.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* WaveMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -121,6 +125,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				669ADA7B10D9870D001B4E59 /* WaveColored.png */,
+				669ADA7C10D9870D001B4E59 /* WaveRed.png */,
 				6636061310D142B70013918E /* WaveGrey.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -184,6 +190,8 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				6636061410D142B70013918E /* WaveGrey.png in Resources */,
+				669ADA7D10D9870D001B4E59 /* WaveColored.png in Resources */,
+				669ADA7E10D9870D001B4E59 /* WaveRed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
