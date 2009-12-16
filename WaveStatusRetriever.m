@@ -134,7 +134,57 @@
     // Get JSON string.
     NSRange jsonRange = { jsonPrefix.location + 11, endOfLine.location - jsonPrefix.location - 11 };
     NSString* jsonString = [waveString substringWithRange:jsonRange];
-    NSLog(@"Got JSON: %@", jsonString);
+    
+		// Parse string.
+    NSDictionary* jsonObj = [jsonParser objectWithString:jsonString];
+    if (0 == jsonObj)
+    {
+      NSLog(@"Could not parse JSON: $@", jsonObj);
+      continue;
+    }
+    id pObj, messages;
+    if ((pObj = [jsonObj objectForKey:@"p"]) && [pObj isKindOfClass:[NSDictionary class]])
+    {
+      if ((messages = [pObj objectForKey:@"1"]) && [messages isKindOfClass:[NSArray class]])
+      {
+        id mess;
+        for (mess in (NSArray*)messages)
+        {
+          //NSLog(@"Got message: %@", mess);
+          id totalCountNum = [mess objectForKey:@"6"];
+          id unreadCountNum = [mess objectForKey:@"7"];
+          id metaData = [mess objectForKey:@"9"];
+          if (metaData && [metaData isKindOfClass:[NSDictionary class]] &&
+              totalCountNum && [totalCountNum isKindOfClass:[NSDecimalNumber class]] &&
+              unreadCountNum && [unreadCountNum isKindOfClass:[NSDecimalNumber class]])
+          {
+            NSString* title = [metaData objectForKey:@"1"];
+            if (title && [title isKindOfClass:[NSString class]])
+            {
+              NSInteger totalCount = [totalCountNum integerValue];
+              NSInteger unreadCount = [unreadCountNum integerValue];
+              if (totalCount > unreadCount && totalCount > 0 && unreadCount >= 0)
+              {
+                NSLog(@"Got message %d/%d: %@", unreadCount, totalCount, title);
+              }
+              else
+              {
+                NSLog(@"Message: %@; unread/total count out of range: %@/%@", unreadCountNum, totalCountNum);
+              }
+            }
+            else
+            {
+              NSLog(@"Could not find title.");
+            }
+          }
+          else
+          {
+            NSLog(@"Could not find meta data.");
+          }
+        }
+      }
+    }
+    //NSLog(@"Got JSON: %@", jsonObj);
     
     // Update range.
     rangeToCheck.location = endOfLine.location + 2;
