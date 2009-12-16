@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import <JSON/JSON.h>
 
 @interface WaveStatusRetriever : NSObject {
 @private
@@ -17,6 +17,8 @@
   
   NSURLConnection* waveDownloader;
   NSMutableData* waveData;
+  
+  SBJSON *jsonParser;
 }
 - (void)refreshWaveData:(id)sender;
 - (void) startRunLoop;

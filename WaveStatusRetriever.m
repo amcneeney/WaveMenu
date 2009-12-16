@@ -13,7 +13,10 @@
 - (WaveStatusRetriever*)init
 {
   [super init];
+  
   waveDownloader = 0;
+  
+  jsonParser = [[[SBJSON alloc] init] retain];
   
   return self;
 }
@@ -106,9 +109,40 @@
   // release the connection, and the data object
   waveDownloader = 0;
   [connection release];
+  
+  // Convert to NSString.
+  NSString* waveString = [[NSString alloc] initWithData:waveData encoding:NSASCIIStringEncoding];
+  
+  NSRange rangeToCheck = { 0, [waveString length] };
+  while (true)
+  {
+    // Find next JSON prefix.
+    NSRange jsonPrefix = [waveString rangeOfString:@"var json = " options:0 range:rangeToCheck];
+    if (jsonPrefix.location == NSNotFound)
+    {
+      break;
+    }
+    
+    // Find end of line following JSON.
+    NSRange endOfLine = [waveString rangeOfString:@";\n" options:0 range:(NSRange){ jsonPrefix.location, [waveString length] - jsonPrefix.location }];
+    if (endOfLine.location == NSNotFound)
+    {
+      NSLog(@"Warning: could not find end of JSON string.");
+      break;
+    }
+    
+    // Get JSON string.
+    NSRange jsonRange = { jsonPrefix.location + 11, endOfLine.location - jsonPrefix.location - 11 };
+    NSString* jsonString = [waveString substringWithRange:jsonRange];
+    NSLog(@"Got JSON: %@", jsonString);
+    
+    // Update range.
+    rangeToCheck.location = endOfLine.location + 2;
+    rangeToCheck.length = [waveString length] - rangeToCheck.location;
+  }
 
   // Display data.
-  NSLog(@"Got data from wave.google.com: %@", [[NSString alloc] initWithData:waveData encoding:NSASCIIStringEncoding]);
+  NSLog(@"Done parsing wave data.");
   [waveData release];
 }
 @end
