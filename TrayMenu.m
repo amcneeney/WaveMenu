@@ -35,8 +35,8 @@
   [_statusItem retain];
   
   // Start status retriever.
-  WaveStatusRetriever* wsr = [[WaveStatusRetriever alloc] initWithDelegate:self];
-  [wsr startRunLoopWithInterval:[preferences integerForKey:@"refreshInterval"]];
+  statusRetriever = [[[WaveStatusRetriever alloc] initWithDelegate:self] retain];
+  [statusRetriever startRunLoopWithInterval:[preferences integerForKey:@"refreshInterval"]];
   
   return self;
 }
@@ -56,9 +56,11 @@
   
   [newMenu addItem:[NSMenuItem separatorItem]];
 
-  menuItem = [newMenu addItemWithTitle:@"About WaveMenu..." action:@selector(openAboutWaveMenu:) keyEquivalent:@""];
+  menuItem = [newMenu addItemWithTitle:@"About WaveMenu" action:@selector(openAboutWaveMenu:) keyEquivalent:@""];
   [menuItem setTarget:self];  
-  menuItem = [newMenu addItemWithTitle:@"Preferences..." action:@selector(openPreferences:) keyEquivalent:@""];
+  menuItem = [newMenu addItemWithTitle:@"Preferences" action:@selector(openPreferences:) keyEquivalent:@""];
+  [menuItem setTarget:self];
+  menuItem = [newMenu addItemWithTitle:@"Refresh Now" action:@selector(refreshWaveData:) keyEquivalent:@""];
   [menuItem setTarget:self];
 
   [newMenu addItem:[NSMenuItem separatorItem]];
@@ -103,6 +105,11 @@
   }
   [preferencesController showWindow:self];
   [[preferencesController window] makeKeyAndOrderFront:self];
+}
+
+- (void)refreshWaveData:(id)sender
+{
+  [statusRetriever refreshWaveData:sender];
 }
 
 #pragma mark Wave Retrieval Delegate Methods

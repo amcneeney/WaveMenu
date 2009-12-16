@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "WaveStatusRetriever.h"
 
 @interface TrayMenu : NSObject {
 @private
@@ -17,6 +17,7 @@
   NSUserDefaults* preferences;
   NSWindowController* preferencesController;
   NSWindowController* aboutController;
+  WaveStatusRetriever* statusRetriever;
 }
 - (NSMenu*) createMenu;
 
