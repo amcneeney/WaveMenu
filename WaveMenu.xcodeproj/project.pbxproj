@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		662BC50E10D148EB00DBD774 /* WaveStatusRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 662BC50D10D148EB00DBD774 /* WaveStatusRetriever.m */; };
 		6636060210D13C940013918E /* TrayMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6636060110D13C940013918E /* TrayMenu.m */; };
 		6636060910D13E850013918E /* ApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6636060810D13E850013918E /* ApplicationDelegate.m */; };
@@ -17,6 +16,8 @@
 		669ADA7D10D9870D001B4E59 /* WaveColored.png in Resources */ = {isa = PBXBuildFile; fileRef = 669ADA7B10D9870D001B4E59 /* WaveColored.png */; };
 		669ADA7E10D9870D001B4E59 /* WaveRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 669ADA7C10D9870D001B4E59 /* WaveRed.png */; };
 		669ADA9C10D98EC9001B4E59 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669ADA9B10D98EC9001B4E59 /* Security.framework */; };
+		669ADB4910D99745001B4E59 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669ADB4810D99745001B4E59 /* Preferences.xib */; };
+		669ADB5910D99836001B4E59 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669ADB5810D99836001B4E59 /* About.xib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -26,7 +27,6 @@
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -44,6 +44,8 @@
 		669ADA7B10D9870D001B4E59 /* WaveColored.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WaveColored.png; sourceTree = "<group>"; };
 		669ADA7C10D9870D001B4E59 /* WaveRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WaveRed.png; sourceTree = "<group>"; };
 		669ADA9B10D98EC9001B4E59 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
+		669ADB4810D99745001B4E59 /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
+		669ADB5810D99836001B4E59 /* About.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* WaveMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -134,7 +136,8 @@
 				6636061310D142B70013918E /* WaveGrey.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+				669ADB4810D99745001B4E59 /* Preferences.xib */,
+				669ADB5810D99836001B4E59 /* About.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -192,10 +195,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				6636061410D142B70013918E /* WaveGrey.png in Resources */,
 				669ADA7D10D9870D001B4E59 /* WaveColored.png in Resources */,
 				669ADA7E10D9870D001B4E59 /* WaveRed.png in Resources */,
+				669ADB4910D99745001B4E59 /* Preferences.xib in Resources */,
+				669ADB5910D99836001B4E59 /* About.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,14 +227,6 @@
 				089C165DFE840E0CC02AAC07 /* English */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		1DDD58140DA1D0A300B32029 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1DDD58150DA1D0A300B32029 /* English */,
-			);
-			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

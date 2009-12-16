@@ -85,6 +85,26 @@
   [NSApp terminate:sender];
 }
 
+- (void)openAboutWaveMenu:(id)sender
+{
+  if (aboutController == nil)
+  {
+    aboutController = [[NSWindowController alloc] initWithWindowNibName:@"About"];
+  }
+  [aboutController showWindow:self];
+  [[aboutController window] makeKeyAndOrderFront:self];
+}
+
+- (void)openPreferences:(id)sender
+{
+  if (preferencesController == nil)
+  {
+    preferencesController = [[NSWindowController alloc] initWithWindowNibName:@"Preferences"];
+  }
+  [preferencesController showWindow:self];
+  [[preferencesController window] makeKeyAndOrderFront:self];
+}
+
 #pragma mark Wave Retrieval Delegate Methods
 
 - (void)waveDataRetrievalStarted

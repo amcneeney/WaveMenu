@@ -15,6 +15,8 @@
   NSMenu* menu;
   NSMenuItem* statusMenuItem;
   NSUserDefaults* preferences;
+  NSWindowController* preferencesController;
+  NSWindowController* aboutController;
 }
 - (NSMenu*) createMenu;
 
