@@ -62,10 +62,10 @@
 
 }
 
-- (void) startRunLoop
+- (void) startRunLoopWithInterval:(NSInteger)interval
 {
   [self refreshWaveData:self];
-  timer = [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(refreshWaveData:) userInfo:nil repeats:YES];
+  timer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(refreshWaveData:) userInfo:nil repeats:YES];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response

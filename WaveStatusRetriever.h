@@ -23,5 +23,5 @@
 @property (retain) id delegate;
 - (WaveStatusRetriever*)initWithDelegate:(id)newDelegate;
 - (void)refreshWaveData:(id)sender;
-- (void)startRunLoop;
+- (void)startRunLoopWithInterval:(NSInteger)interval;
 @end

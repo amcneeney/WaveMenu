@@ -16,6 +16,7 @@
 		669ADA3410D97E36001B4E59 /* Wave.m in Sources */ = {isa = PBXBuildFile; fileRef = 669ADA3310D97E36001B4E59 /* Wave.m */; };
 		669ADA7D10D9870D001B4E59 /* WaveColored.png in Resources */ = {isa = PBXBuildFile; fileRef = 669ADA7B10D9870D001B4E59 /* WaveColored.png */; };
 		669ADA7E10D9870D001B4E59 /* WaveRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 669ADA7C10D9870D001B4E59 /* WaveRed.png */; };
+		669ADA9C10D98EC9001B4E59 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669ADA9B10D98EC9001B4E59 /* Security.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -42,6 +43,7 @@
 		669ADA3310D97E36001B4E59 /* Wave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wave.m; sourceTree = "<group>"; };
 		669ADA7B10D9870D001B4E59 /* WaveColored.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WaveColored.png; sourceTree = "<group>"; };
 		669ADA7C10D9870D001B4E59 /* WaveRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WaveRed.png; sourceTree = "<group>"; };
+		669ADA9B10D98EC9001B4E59 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* WaveMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -53,6 +55,7 @@
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				669AD99810D960F8001B4E59 /* JSON.framework in Frameworks */,
+				669ADA9C10D98EC9001B4E59 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +80,7 @@
 			children = (
 				669AD99710D960F8001B4E59 /* JSON.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				669ADA9B10D98EC9001B4E59 /* Security.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";

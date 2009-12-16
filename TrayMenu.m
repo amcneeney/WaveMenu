@@ -15,6 +15,14 @@
 {
   [super init];
   
+  preferences = [[NSUserDefaults standardUserDefaults] retain];
+  NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                         [NSNumber numberWithInt:300], @"refreshInterval",
+                         @"", @"username",
+                         nil
+                       ];
+  [preferences registerDefaults:dict];
+  
   menu = [self createMenu];
   [menu retain];
   [menu setDelegate:self];
@@ -24,12 +32,11 @@
   [_statusItem setHighlightMode:YES];
   [_statusItem setToolTip:@"Google Wave"];
   [_statusItem setImage:[NSImage imageNamed:@"WaveGrey"]];
-  //[_statusItem setTitle:@"W"];
   [_statusItem retain];
   
   // Start status retriever.
   WaveStatusRetriever* wsr = [[WaveStatusRetriever alloc] initWithDelegate:self];
-  [wsr startRunLoop];
+  [wsr startRunLoopWithInterval:[preferences integerForKey:@"refreshInterval"]];
   
   return self;
 }

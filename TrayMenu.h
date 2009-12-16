@@ -14,6 +14,7 @@
   NSStatusItem* _statusItem;
   NSMenu* menu;
   NSMenuItem* statusMenuItem;
+  NSUserDefaults* preferences;
 }
 - (NSMenu*) createMenu;
 
