@@ -341,9 +341,9 @@
   // Prepare post data.
   NSString* stringData = [NSString
                           stringWithFormat:@"Email=%@&Passwd=%@&GALX=%@&service=wave", 
-                          [[self username] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                          [[self password] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                          [galxString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                          [[self username] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],
+                          [[self password] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],
+                          [galxString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]
                          ];
   NSData* postData = [NSData dataWithBytes:[stringData UTF8String] length:[stringData length]];
   
