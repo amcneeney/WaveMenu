@@ -19,9 +19,16 @@
   NSMutableData* waveData;
   
   SBJSON *jsonParser;
+  
+  NSString* username;
+  NSString* password;
 }
 @property (retain) id delegate;
+@property (retain) NSString* username;
+@property (retain) NSString* password;
+
 - (WaveStatusRetriever*)initWithDelegate:(id)newDelegate;
 - (void)refreshWaveData:(id)sender;
 - (void)startRunLoopWithInterval:(NSInteger)interval;
+
 @end

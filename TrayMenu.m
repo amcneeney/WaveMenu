@@ -32,6 +32,8 @@
   
   // Start status retriever.
   statusRetriever = [[[WaveStatusRetriever alloc] initWithDelegate:self] retain];
+  [statusRetriever setPassword:[preferencesController password]];
+  [statusRetriever setUsername:[preferencesController username]];
   [statusRetriever startRunLoopWithInterval:[[preferencesController refreshInterval] integerValue]];
   
   return self;
@@ -155,9 +157,11 @@
 
 - (void)waveUsernameUpdate:(NSString*)user
 {
+  [statusRetriever setUsername:user];
 }
 - (void)wavePasswordUpdate:(NSString*)password
 {
+  [statusRetriever setPassword:password];
 }
 - (void)waveRefreshIntervalUpdate:(NSNumber*)interval
 {

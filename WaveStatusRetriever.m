@@ -10,7 +10,7 @@
 #import "Wave.h"
 
 @implementation WaveStatusRetriever
-@synthesize delegate;
+@synthesize delegate, username, password;
 
 - (WaveStatusRetriever*)init
 {
