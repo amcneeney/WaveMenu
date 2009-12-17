@@ -97,6 +97,8 @@
 
 - (void)openPreferences:(id)sender
 {
+  // TODO allow window to be opened twice
+  // TODO bring window really to front
   [[preferencesController window] makeKeyAndOrderFront:self];
 }
 
