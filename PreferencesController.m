@@ -7,7 +7,7 @@
 //
 
 #import "PreferencesController.h"
-
+#import <Security/Security.h>
 
 @implementation PreferencesController
 @synthesize delegate;
@@ -101,12 +101,50 @@
 }
 - (NSString*)password
 {
-  // TODO retrieve password.
-  return @"";
+  NSString* serviceName = @"WaveMenu";
+  void* password;
+  UInt32 passwordLength = 0;
+  
+  OSStatus stat = SecKeychainFindGenericPassword(NULL, // default keychain
+                                                [serviceName length], [serviceName UTF8String],
+                                                0, NULL, // no username
+                                                &passwordLength, &password,
+                                                NULL // don't need item ref
+                                               );
+  if (0 == stat)
+  {
+    NSString* ret = [[NSString alloc] initWithBytes:password length:passwordLength encoding:NSUTF8StringEncoding];
+    
+    // TODO Free data.
+    
+    return ret;
+	}
+  else if (errSecItemNotFound == stat)
+  {
+    // Can't find password; that's okay.
+    return @"";
+  }
+  else
+  {
+    NSLog(@"Could not retrieve password; errno = %d", stat);
+    return @"";
+  }
 }
 - (void)setPassword:(NSString*)password
 {
-  // TODO update password.
+  NSString* serviceName = @"WaveMenu";
+	OSStatus stat = SecKeychainAddGenericPassword(NULL, // default keychain
+                                                [serviceName length], [serviceName UTF8String],
+                                                0, NULL, // no username
+                                                [password length],
+                                                [password UTF8String],
+                                                NULL
+                                                );
+  if (0 != stat)
+  {
+    NSLog(@"Warning: failed to update password; errno = %d", stat);
+  }
+  
   if (delegate && [delegate respondsToSelector:@selector(wavePasswordUpdated:)])
   {
     [delegate performSelector:@selector(wavePasswordUpdated:) withObject:password];
