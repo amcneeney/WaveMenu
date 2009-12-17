@@ -60,8 +60,18 @@
   }
   else
   {
-    // TODO report to user.
-    NSLog(@"Could not start download.");
+    if (delegate && [delegate respondsToSelector:@selector(waveDataRetrievalError:)])
+    {
+      NSError* err = [NSError
+                      errorWithDomain:@"WaveMenu"
+                      code:1
+                      userInfo:[NSDictionary
+                                dictionaryWithObject:@"Could not start main Wave page download"
+                                forKey:NSLocalizedDescriptionKey
+                               ]
+                      ];
+      [delegate performSelector:@selector(waveDataRetrievalError:) withObject:err];
+    }
   }
 }
 
@@ -103,7 +113,7 @@
     [delegate performSelector:@selector(waveDataRetrievalError:) withObject:error];
   }
   
-	// Log the error.
+  // Log the error.
   NSLog(@"Wave update connection failed! Error - %@ %@",
         [error localizedDescription],
         [[error userInfo] objectForKey:NSErrorFailingURLStringKey]);
@@ -131,7 +141,7 @@
     }
     else
     {
-    	[self processLogin:waveString];
+      [self processLogin:waveString];
     }
   }
   else if ([[[self currentURL] absoluteString] rangeOfString:@"CheckCookie"].location != NSNotFound)
@@ -140,7 +150,7 @@
   }
   else
   {
-  	[self processWaveData:waveString];
+    [self processWaveData:waveString];
   }
 }
 - (void)processWaveData:(NSString*)waveString
@@ -170,7 +180,7 @@
     NSRange jsonRange = { jsonPrefix.location + 11, endOfLine.location - jsonPrefix.location - 11 };
     NSString* jsonString = [waveString substringWithRange:jsonRange];
     
-		// Parse string.
+    // Parse string.
     NSDictionary* jsonObj = [jsonParser objectWithString:jsonString];
     if (0 == jsonObj)
     {
@@ -239,7 +249,18 @@
   }
   else
   {
-    // TODO pass error to delegate
+    if (delegate && [delegate respondsToSelector:@selector(waveDataRetrievalError:)])
+    {
+      NSError* err = [NSError
+                      errorWithDomain:@"WaveMenu"
+                      code:2
+                      userInfo:[NSDictionary
+                                dictionaryWithObject:@"Wave page does not contain JSON"
+                                forKey:NSLocalizedDescriptionKey
+                                ]
+                      ];
+      [delegate performSelector:@selector(waveDataRetrievalError:) withObject:err];
+    }    
   }
 
   // Display data.
@@ -249,12 +270,22 @@
 
 -(void)processLogin:(NSString*)waveString
 {
-  // TODO grab GALX parameter from incoming string.
+  // Grab GALX parameter from incoming string.
   NSRange galxRange = [waveString rangeOfString:@"name=\"GALX\""];
   if (galxRange.location == NSNotFound)
   {
-    NSLog(@"Could not find GALX location.");
-    // TODO report to user.
+    if (delegate && [delegate respondsToSelector:@selector(waveDataRetrievalError:)])
+    {
+      NSError* err = [NSError
+                      errorWithDomain:@"WaveMenu"
+                      code:3
+                      userInfo:[NSDictionary
+                                dictionaryWithObject:@"Could not find GALX parameter in login page"
+                                forKey:NSLocalizedDescriptionKey
+                                ]
+                      ];
+      [delegate performSelector:@selector(waveDataRetrievalError:) withObject:err];
+    }
     return;
   }
   // Find GALX value.
@@ -265,8 +296,18 @@
                           ];
   if (galxValueRange.location == NSNotFound)
   {
-    NSLog(@"Could not find GALX value location.");
-    // TODO report to user.
+    if (delegate && [delegate respondsToSelector:@selector(waveDataRetrievalError:)])
+    {
+      NSError* err = [NSError
+                      errorWithDomain:@"WaveMenu"
+                      code:4
+                      userInfo:[NSDictionary
+                                dictionaryWithObject:@"Could not find GALX parameter value in login page"
+                                forKey:NSLocalizedDescriptionKey
+                                ]
+                      ];
+      [delegate performSelector:@selector(waveDataRetrievalError:) withObject:err];
+    }
     return;
   }
   // Find end of GALX value string.
@@ -277,8 +318,18 @@
                         ];
   if (galxValueEnd.location == NSNotFound)
   {
-    NSLog(@"Could not find GALX value end location.");
-    // TODO report to user.
+    if (delegate && [delegate respondsToSelector:@selector(waveDataRetrievalError:)])
+    {
+      NSError* err = [NSError
+                      errorWithDomain:@"WaveMenu"
+                      code:5
+                      userInfo:[NSDictionary
+                                dictionaryWithObject:@"Could not find GALX parameter value end"
+                                forKey:NSLocalizedDescriptionKey
+                                ]
+                      ];
+      [delegate performSelector:@selector(waveDataRetrievalError:) withObject:err];
+    }
     return;
   }
   NSString* galxString = [waveString
@@ -288,7 +339,7 @@
   [self setCurrentURL:loginURL];
   
   // Prepare post data.
-  // TOOD URL encode these parameters.
+  // TODO URL encode these parameters.
   NSString* stringData = [NSString stringWithFormat:@"Email=%@&Passwd=%@&GALX=%@&service=wave", [self username], [self password], galxString];
   NSData* postData = [NSData dataWithBytes:[stringData UTF8String] length:[stringData length]];
   
@@ -348,20 +399,30 @@
       {
         // Have start of error message; find end.
         NSRange errorMessageBracketEnd = [waveString
-                                   			  rangeOfString:@"["
+                                          rangeOfString:@"["
                                           options:0
                                           range:(NSRange){ errorMessageStart, 200 }];
         NSRange errorMessageTagEnd = [waveString
-                                   			  rangeOfString:@"<"
+                                          rangeOfString:@"<"
                                           options:0
                                           range:(NSRange){ errorMessageStart, 200 }];
         NSUInteger errorMessageEnd = (errorMessageBracketEnd.location < errorMessageTagEnd.location) ?
-       															 errorMessageBracketEnd.location :
+                                     errorMessageBracketEnd.location :
                                      errorMessageTagEnd.location;
         NSString* errorMessage = [waveString substringWithRange:(NSRange){ errorMessageStart, errorMessageEnd - errorMessageStart }];
         
-        NSLog(@"Login error: %@", errorMessage);
-        // TODO report to user.
+        if (delegate && [delegate respondsToSelector:@selector(waveDataRetrievalError:)])
+        {
+          NSError* err = [NSError
+                          errorWithDomain:@"WaveMenu"
+                          code:7
+                          userInfo:[NSDictionary
+                                    dictionaryWithObject:errorMessage
+                                    forKey:NSLocalizedDescriptionKey
+                                    ]
+                          ];
+          [delegate performSelector:@selector(waveDataRetrievalError:) withObject:err];
+        }
         return;
       }
     }
@@ -369,6 +430,18 @@
   
   // If we got here, then we haven't found the error.
   NSLog(@"Got login error:\n%@", waveString);
+  if (delegate && [delegate respondsToSelector:@selector(waveDataRetrievalError:)])
+  {
+    NSError* err = [NSError
+                    errorWithDomain:@"WaveMenu"
+                    code:8
+                    userInfo:[NSDictionary
+                              dictionaryWithObject:@"Unknown login error"
+                              forKey:NSLocalizedDescriptionKey
+                              ]
+                    ];
+    [delegate performSelector:@selector(waveDataRetrievalError:) withObject:err];
+  }  
 }
 -(void)processCookieCheck:(NSString*)waveString
 {
@@ -386,16 +459,26 @@
   }
   else
   {
-    // TODO report to user.
-    NSLog(@"Could not start redirected download.");
+    if (delegate && [delegate respondsToSelector:@selector(waveDataRetrievalError:)])
+    {
+      NSError* err = [NSError
+                      errorWithDomain:@"WaveMenu"
+                      code:9
+                      userInfo:[NSDictionary
+                                dictionaryWithObject:@"Could not start redirected download"
+                                forKey:NSLocalizedDescriptionKey
+                                ]
+                      ];
+      [delegate performSelector:@selector(waveDataRetrievalError:) withObject:err];
+    }    
   }  
 }
 -(NSURLRequest *)connection:(NSURLConnection *)connection
             willSendRequest:(NSURLRequest *)request
            redirectResponse:(NSURLResponse *)redirectResponse
 {
-  NSLog(@"Got redirect: %@", [[request URL] absoluteString]);
+  //NSLog(@"Got redirect: %@", [[request URL] absoluteString]);
   [self setCurrentURL:[request URL]];
-	return request;
+  return request;
 }
 @end
