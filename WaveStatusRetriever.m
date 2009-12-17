@@ -339,8 +339,12 @@
   [self setCurrentURL:loginURL];
   
   // Prepare post data.
-  // TODO URL encode these parameters.
-  NSString* stringData = [NSString stringWithFormat:@"Email=%@&Passwd=%@&GALX=%@&service=wave", [self username], [self password], galxString];
+  NSString* stringData = [NSString
+                          stringWithFormat:@"Email=%@&Passwd=%@&GALX=%@&service=wave", 
+                          [[self username] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                          [[self password] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                          [galxString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                         ];
   NSData* postData = [NSData dataWithBytes:[stringData UTF8String] length:[stringData length]];
   
   //NSLog(@"Sending data: %@", stringData);
