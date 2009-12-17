@@ -63,6 +63,7 @@
 
 - (IBAction)passwordUpdated:(id)sender
 {
+  NSLog(@"Updating password: %@", [passwordBox stringValue]);
   [self setPassword:[passwordBox stringValue]];
 }
 
@@ -132,14 +133,27 @@
 }
 - (void)setPassword:(NSString*)password
 {
+  // Delete current password.
   NSString* serviceName = @"WaveMenu";
-	OSStatus stat = SecKeychainAddGenericPassword(NULL, // default keychain
-                                                [serviceName length], [serviceName UTF8String],
-                                                0, NULL, // no username
-                                                [password length],
-                                                [password UTF8String],
-                                                NULL
-                                                );
+  SecKeychainItemRef itemRef;
+  OSStatus stat = SecKeychainFindGenericPassword(NULL, // default keychain
+                                                 [serviceName length], [serviceName UTF8String],
+                                                 0, NULL, // no username
+                                                 0, NULL, // don't need password
+                                                 &itemRef
+                                                 );
+  if (0 == stat)
+  {
+    SecKeychainItemDelete(itemRef);
+  }
+  
+  stat = SecKeychainAddGenericPassword(NULL, // default keychain
+                                       [serviceName length], [serviceName UTF8String],
+                                       0, NULL, // no username
+                                       [password length],
+                                       [password UTF8String],
+                                       NULL
+                                      );
   if (0 != stat)
   {
     NSLog(@"Warning: failed to update password; errno = %d", stat);

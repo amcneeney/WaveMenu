@@ -17,18 +17,27 @@
   
   NSURLConnection* waveDownloader;
   NSMutableData* waveData;
+  NSURL* currentURL;
   
   SBJSON *jsonParser;
   
   NSString* username;
   NSString* password;
+  
+  BOOL loggingIn;
 }
 @property (retain) id delegate;
 @property (retain) NSString* username;
 @property (retain) NSString* password;
+@property (retain) NSURL* currentURL;
 
 - (WaveStatusRetriever*)initWithDelegate:(id)newDelegate;
 - (void)refreshWaveData:(id)sender;
 - (void)startRunLoopWithInterval:(NSInteger)interval;
+
+- (void)processWaveData:(NSString*)waveString;
+- (void)processLogin:(NSString*)waveString;
+- (void)processLoginError:(NSString*)waveString;
+- (void)processCookieCheck:(NSString*)waveString;
 
 @end

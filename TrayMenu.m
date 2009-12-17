@@ -157,14 +157,17 @@
 
 - (void)waveUsernameUpdate:(NSString*)user
 {
+  NSLog(@"Got username update");
   [statusRetriever setUsername:user];
 }
 - (void)wavePasswordUpdate:(NSString*)password
 {
+  NSLog(@"Got password update");
   [statusRetriever setPassword:password];
 }
 - (void)waveRefreshIntervalUpdate:(NSNumber*)interval
 {
+  NSLog(@"Got refresh interval update");
   [statusRetriever startRunLoopWithInterval:[interval integerValue]];
 }
 @end
