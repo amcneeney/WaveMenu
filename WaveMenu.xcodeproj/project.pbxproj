@@ -11,7 +11,6 @@
 		6636060210D13C940013918E /* TrayMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6636060110D13C940013918E /* TrayMenu.m */; };
 		6636060910D13E850013918E /* ApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6636060810D13E850013918E /* ApplicationDelegate.m */; };
 		6636061410D142B70013918E /* WaveGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 6636061310D142B70013918E /* WaveGrey.png */; };
-		669AD99810D960F8001B4E59 /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669AD99710D960F8001B4E59 /* JSON.framework */; };
 		669ADA3410D97E36001B4E59 /* Wave.m in Sources */ = {isa = PBXBuildFile; fileRef = 669ADA3310D97E36001B4E59 /* Wave.m */; };
 		669ADA7D10D9870D001B4E59 /* WaveColored.png in Resources */ = {isa = PBXBuildFile; fileRef = 669ADA7B10D9870D001B4E59 /* WaveColored.png */; };
 		669ADA7E10D9870D001B4E59 /* WaveRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 669ADA7C10D9870D001B4E59 /* WaveRed.png */; };
@@ -19,6 +18,12 @@
 		669ADB4910D99745001B4E59 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669ADB4810D99745001B4E59 /* Preferences.xib */; };
 		669ADB5910D99836001B4E59 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669ADB5810D99836001B4E59 /* About.xib */; };
 		669ADBB210D9AD4C001B4E59 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669ADBB110D9AD4C001B4E59 /* PreferencesController.m */; };
+		669ADE7910DAFB33001B4E59 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 669ADE6E10DAFB33001B4E59 /* NSObject+SBJSON.m */; };
+		669ADE7A10DAFB33001B4E59 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 669ADE7010DAFB33001B4E59 /* NSString+SBJSON.m */; };
+		669ADE7B10DAFB33001B4E59 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 669ADE7210DAFB33001B4E59 /* SBJSON.m */; };
+		669ADE7C10DAFB33001B4E59 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 669ADE7410DAFB33001B4E59 /* SBJsonBase.m */; };
+		669ADE7D10DAFB33001B4E59 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 669ADE7610DAFB33001B4E59 /* SBJsonParser.m */; };
+		669ADE7E10DAFB33001B4E59 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 669ADE7810DAFB33001B4E59 /* SBJsonWriter.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -39,7 +44,6 @@
 		6636060710D13E850013918E /* ApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationDelegate.h; sourceTree = "<group>"; };
 		6636060810D13E850013918E /* ApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationDelegate.m; sourceTree = "<group>"; };
 		6636061310D142B70013918E /* WaveGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WaveGrey.png; sourceTree = "<group>"; };
-		669AD99710D960F8001B4E59 /* JSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSON.framework; sourceTree = "<group>"; };
 		669ADA3210D97E36001B4E59 /* Wave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wave.h; sourceTree = "<group>"; };
 		669ADA3310D97E36001B4E59 /* Wave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wave.m; sourceTree = "<group>"; };
 		669ADA7B10D9870D001B4E59 /* WaveColored.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WaveColored.png; sourceTree = "<group>"; };
@@ -49,6 +53,19 @@
 		669ADB5810D99836001B4E59 /* About.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
 		669ADBB010D9AD4C001B4E59 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
 		669ADBB110D9AD4C001B4E59 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
+		669ADE6C10DAFB33001B4E59 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		669ADE6D10DAFB33001B4E59 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		669ADE6E10DAFB33001B4E59 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		669ADE6F10DAFB33001B4E59 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		669ADE7010DAFB33001B4E59 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		669ADE7110DAFB33001B4E59 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		669ADE7210DAFB33001B4E59 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		669ADE7310DAFB33001B4E59 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		669ADE7410DAFB33001B4E59 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		669ADE7510DAFB33001B4E59 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		669ADE7610DAFB33001B4E59 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		669ADE7710DAFB33001B4E59 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		669ADE7810DAFB33001B4E59 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* WaveMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -59,7 +76,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				669AD99810D960F8001B4E59 /* JSON.framework in Frameworks */,
 				669ADA9C10D98EC9001B4E59 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,7 +99,6 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				669AD99710D960F8001B4E59 /* JSON.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				669ADA9B10D98EC9001B4E59 /* Security.framework */,
 			);
@@ -115,6 +130,7 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				669ADE6B10DAFB33001B4E59 /* JSON */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -162,6 +178,26 @@
 				669ADBB110D9AD4C001B4E59 /* PreferencesController.m */,
 			);
 			name = Preferences;
+			sourceTree = "<group>";
+		};
+		669ADE6B10DAFB33001B4E59 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				669ADE6C10DAFB33001B4E59 /* JSON.h */,
+				669ADE6D10DAFB33001B4E59 /* NSObject+SBJSON.h */,
+				669ADE6E10DAFB33001B4E59 /* NSObject+SBJSON.m */,
+				669ADE6F10DAFB33001B4E59 /* NSString+SBJSON.h */,
+				669ADE7010DAFB33001B4E59 /* NSString+SBJSON.m */,
+				669ADE7110DAFB33001B4E59 /* SBJSON.h */,
+				669ADE7210DAFB33001B4E59 /* SBJSON.m */,
+				669ADE7310DAFB33001B4E59 /* SBJsonBase.h */,
+				669ADE7410DAFB33001B4E59 /* SBJsonBase.m */,
+				669ADE7510DAFB33001B4E59 /* SBJsonParser.h */,
+				669ADE7610DAFB33001B4E59 /* SBJsonParser.m */,
+				669ADE7710DAFB33001B4E59 /* SBJsonWriter.h */,
+				669ADE7810DAFB33001B4E59 /* SBJsonWriter.m */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +265,12 @@
 				662BC50E10D148EB00DBD774 /* WaveStatusRetriever.m in Sources */,
 				669ADA3410D97E36001B4E59 /* Wave.m in Sources */,
 				669ADBB210D9AD4C001B4E59 /* PreferencesController.m in Sources */,
+				669ADE7910DAFB33001B4E59 /* NSObject+SBJSON.m in Sources */,
+				669ADE7A10DAFB33001B4E59 /* NSString+SBJSON.m in Sources */,
+				669ADE7B10DAFB33001B4E59 /* SBJSON.m in Sources */,
+				669ADE7C10DAFB33001B4E59 /* SBJsonBase.m in Sources */,
+				669ADE7D10DAFB33001B4E59 /* SBJsonParser.m in Sources */,
+				669ADE7E10DAFB33001B4E59 /* SBJsonWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

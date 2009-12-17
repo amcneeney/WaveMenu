@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <JSON/JSON.h>
+#import "JSON.h"
 
 @interface WaveStatusRetriever : NSObject {
 @private
