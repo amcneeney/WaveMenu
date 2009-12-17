@@ -17,6 +17,7 @@
   [super init];
   
   preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"Preferences"];
+  [preferencesController setDelegate:self];
   
   menu = [self createMenu];
   [menu retain];
@@ -148,5 +149,18 @@
     ];
     [_statusItem setImage:[NSImage imageNamed:@"WaveColored"]];
   }
+}
+
+#pragma mark Preference update delegate methods
+
+- (void)waveUsernameUpdate:(NSString*)user
+{
+}
+- (void)wavePasswordUpdate:(NSString*)password
+{
+}
+- (void)waveRefreshIntervalUpdate:(NSNumber*)interval
+{
+  [statusRetriever startRunLoopWithInterval:[interval integerValue]];
 }
 @end

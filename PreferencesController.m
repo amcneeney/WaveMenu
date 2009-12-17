@@ -10,6 +10,8 @@
 
 
 @implementation PreferencesController
+@synthesize delegate;
+
 - (PreferencesController*)initWithWindowNibName:(NSString*)name
 {
   [super initWithWindowNibName:name];
@@ -77,6 +79,11 @@
 {
   [userPreferences setObject:newInterval forKey:@"refreshInterval"];
   [userPreferences synchronize];
+
+  if (delegate && [delegate respondsToSelector:@selector(waveRefreshIntervalUpdated:)])
+  {
+    [delegate performSelector:@selector(waveRefreshIntervalUpdated:) withObject:newInterval];
+  }  
 }
 - (NSString*)username
 {
@@ -86,6 +93,11 @@
 {
   [userPreferences setObject:newUser forKey:@"username"];
   [userPreferences synchronize];
+  
+  if (delegate && [delegate respondsToSelector:@selector(waveUsernameUpdated:)])
+  {
+    [delegate performSelector:@selector(waveUsernameUpdated:) withObject:newUser];
+  }
 }
 - (NSString*)password
 {
@@ -95,5 +107,9 @@
 - (void)setPassword:(NSString*)password
 {
   // TODO update password.
+  if (delegate && [delegate respondsToSelector:@selector(wavePasswordUpdated:)])
+  {
+    [delegate performSelector:@selector(wavePasswordUpdated:) withObject:password];
+  }  
 }
 @end

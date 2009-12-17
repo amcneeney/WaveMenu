@@ -15,15 +15,20 @@
   IBOutlet NSPopUpButton* retrievalIntervalControl;
   IBOutlet NSTextField* passwordBox;
   IBOutlet NSTextField* usernameBox;
+  
+  id delegate;
 }
 
 - (IBAction)passwordUpdated:(id)sender;
 - (IBAction)retrievalIntervalUpdated:(id)sender;
+
 - (NSNumber*)refreshInterval;
 - (void)setRefreshInterval:(NSNumber*)newInterval;
 - (NSString*)username;
 - (void)setUsername:(NSString*)newUser;
 - (NSString*)password;
 - (void)setPassword:(NSString*)password;
+
+@property (nonatomic,retain) id delegate;
 
 @end

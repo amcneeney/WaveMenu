@@ -64,7 +64,6 @@
 
 - (void) startRunLoopWithInterval:(NSInteger)interval
 {
-  [self refreshWaveData:self];
   if (timer)
   {
     [timer invalidate];
@@ -73,6 +72,7 @@
   timer = 0;
   if (interval)
   {
+    [self refreshWaveData:self];
     timer = [[NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(refreshWaveData:) userInfo:nil repeats:YES] retain];
   }
 }
