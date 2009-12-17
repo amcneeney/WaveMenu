@@ -51,7 +51,7 @@
   statusMenuItem = [[newMenu addItemWithTitle:@"Wave Status" action:nil keyEquivalent:@""] retain];
   [newMenu addItem:[NSMenuItem separatorItem]];
   
-  menuItem = [newMenu addItemWithTitle:@"Open Google Wave..." action:@selector(openGoogleWave:) keyEquivalent:@""];
+  menuItem = [newMenu addItemWithTitle:@"Open Google Wave" action:@selector(openGoogleWave:) keyEquivalent:@""];
   [menuItem setTarget:self];
   
   [newMenu addItem:[NSMenuItem separatorItem]];
@@ -65,7 +65,7 @@
 
   [newMenu addItem:[NSMenuItem separatorItem]];
 
-  menuItem = [newMenu addItemWithTitle:@"Quit WaveMenu..." action:@selector(quitWaveMenu:) keyEquivalent:@"q"];
+  menuItem = [newMenu addItemWithTitle:@"Quit WaveMenu" action:@selector(quitWaveMenu:) keyEquivalent:@"q"];
   [menuItem setTarget:self];
   
   return newMenu;
