@@ -18,6 +18,7 @@
 		669ADA9C10D98EC9001B4E59 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669ADA9B10D98EC9001B4E59 /* Security.framework */; };
 		669ADB4910D99745001B4E59 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669ADB4810D99745001B4E59 /* Preferences.xib */; };
 		669ADB5910D99836001B4E59 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669ADB5810D99836001B4E59 /* About.xib */; };
+		669ADBB210D9AD4C001B4E59 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669ADBB110D9AD4C001B4E59 /* PreferencesController.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -46,6 +47,8 @@
 		669ADA9B10D98EC9001B4E59 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		669ADB4810D99745001B4E59 /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		669ADB5810D99836001B4E59 /* About.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
+		669ADBB010D9AD4C001B4E59 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
+		669ADBB110D9AD4C001B4E59 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* WaveMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -108,6 +111,7 @@
 		29B97314FDCFA39411CA2CEA /* WaveMenu */ = {
 			isa = PBXGroup;
 			children = (
+				669ADBAF10D9AD2D001B4E59 /* Preferences */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -136,7 +140,6 @@
 				6636061310D142B70013918E /* WaveGrey.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-				669ADB4810D99745001B4E59 /* Preferences.xib */,
 				669ADB5810D99836001B4E59 /* About.xib */,
 			);
 			name = Resources;
@@ -149,6 +152,16 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		669ADBAF10D9AD2D001B4E59 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				669ADB4810D99745001B4E59 /* Preferences.xib */,
+				669ADBB010D9AD4C001B4E59 /* PreferencesController.h */,
+				669ADBB110D9AD4C001B4E59 /* PreferencesController.m */,
+			);
+			name = Preferences;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +228,7 @@
 				6636060910D13E850013918E /* ApplicationDelegate.m in Sources */,
 				662BC50E10D148EB00DBD774 /* WaveStatusRetriever.m in Sources */,
 				669ADA3410D97E36001B4E59 /* Wave.m in Sources */,
+				669ADBB210D9AD4C001B4E59 /* PreferencesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

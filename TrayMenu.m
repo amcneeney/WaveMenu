@@ -9,19 +9,14 @@
 #import "TrayMenu.h"
 #import "WaveStatusRetriever.h"
 #import "Wave.h"
+#import "PreferencesController.h"
 
 @implementation TrayMenu
 - (TrayMenu*) init
 {
   [super init];
   
-  preferences = [[NSUserDefaults standardUserDefaults] retain];
-  NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                         [NSNumber numberWithInt:300], @"refreshInterval",
-                         @"", @"username",
-                         nil
-                       ];
-  [preferences registerDefaults:dict];
+  preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"Preferences"];
   
   menu = [self createMenu];
   [menu retain];
@@ -36,7 +31,7 @@
   
   // Start status retriever.
   statusRetriever = [[[WaveStatusRetriever alloc] initWithDelegate:self] retain];
-  [statusRetriever startRunLoopWithInterval:[preferences integerForKey:@"refreshInterval"]];
+  [statusRetriever startRunLoopWithInterval:[[preferencesController refreshInterval] integerValue]];
   
   return self;
 }
@@ -99,11 +94,6 @@
 
 - (void)openPreferences:(id)sender
 {
-  if (preferencesController == nil)
-  {
-    preferencesController = [[NSWindowController alloc] initWithWindowNibName:@"Preferences"];
-  }
-  [preferencesController showWindow:self];
   [[preferencesController window] makeKeyAndOrderFront:self];
 }
 
