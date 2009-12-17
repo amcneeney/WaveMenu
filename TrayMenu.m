@@ -157,17 +157,17 @@
 
 #pragma mark Preference update delegate methods
 
-- (void)waveUsernameUpdate:(NSString*)user
+- (void)waveUsernameUpdated:(NSString*)user
 {
   NSLog(@"Got username update");
   [statusRetriever setUsername:user];
 }
-- (void)wavePasswordUpdate:(NSString*)password
+- (void)wavePasswordUpdated:(NSString*)password
 {
   NSLog(@"Got password update");
   [statusRetriever setPassword:password];
 }
-- (void)waveRefreshIntervalUpdate:(NSNumber*)interval
+- (void)waveRefreshIntervalUpdated:(NSNumber*)interval
 {
   NSLog(@"Got refresh interval update");
   [statusRetriever startRunLoopWithInterval:[interval integerValue]];
