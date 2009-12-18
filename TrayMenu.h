@@ -22,5 +22,7 @@
   WaveStatusRetriever* statusRetriever;
 }
 - (NSMenu*) createMenu;
+- (void)updateStatusMessage:(NSString*)message withIcon:(NSImage*)icon;
+- (void)updateStatusMessage:(NSString*)message;
 
 @end

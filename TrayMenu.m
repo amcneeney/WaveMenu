@@ -110,13 +110,12 @@
 
 - (void)waveDataRetrievalStarted
 {
-  [statusMenuItem setTitle:@"Retrieving data..."];
+  [self updateStatusMessage:@"Retrieving data..."];
 }
 
 - (void)waveDataRetrievalError:(NSError*)error
 {
-  [_statusItem setImage:[NSImage imageNamed:@"WaveRed"]];
-  [statusMenuItem setTitle:[error localizedDescription]];  
+  [self updateStatusMessage:[error localizedDescription] withIcon:[NSImage imageNamed:@"WaveRed"]];
 }
 
 - (void)waveDataRetrievalComplete:(NSArray*)messages
@@ -137,20 +136,17 @@
   
   if (0 == unreadMessages)
   {
-    [statusMenuItem setTitle:@"No unread waves"];
-    [_statusItem setImage:[NSImage imageNamed:@"WaveGrey"]];
+    [self updateStatusMessage:@"No unread waves" withIcon:[NSImage imageNamed:@"WaveGrey"]];
   }
   else
   {
-    [statusMenuItem setTitle:
-     	[NSString stringWithFormat:@"%d unread blip%@ in %d wave%@",
-                                 unreadBlips,
-                                 unreadBlips == 1 ? @"" : @"s",
-                                 unreadMessages,
-                                 unreadMessages == 1 ? @"" : @"s"
-    	]
-    ];
-    [_statusItem setImage:[NSImage imageNamed:@"WaveColored"]];
+    NSString* statusMessage = [NSString stringWithFormat:@"%d unread blip%@ in %d wave%@",
+                               unreadBlips,
+                               unreadBlips == 1 ? @"" : @"s",
+                               unreadMessages,
+                               unreadMessages == 1 ? @"" : @"s"
+                              ];
+    [self updateStatusMessage:statusMessage withIcon:[NSImage imageNamed:@"WaveColored"]];
   }
 }
 
@@ -172,5 +168,18 @@
 {
   NSLog(@"Got refresh interval update");
   [statusRetriever startRunLoopWithInterval:[interval integerValue]];
+}
+      
+#pragma mark -
+- (void)updateStatusMessage:(NSString*)message
+{
+  [statusMenuItem setTitle:message];
+  [_statusItem setToolTip:[NSString stringWithFormat:@"WaveMenu: %@", message]];
+}
+
+- (void)updateStatusMessage:(NSString*)message withIcon:(NSImage*)icon
+{
+  [self updateStatusMessage:message];
+  [_statusItem setImage:icon];
 }
 @end
