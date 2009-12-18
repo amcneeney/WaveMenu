@@ -85,7 +85,6 @@
 
 - (IBAction)passwordUpdated:(id)sender
 {
-  NSLog(@"Updating password: %@", [passwordBox stringValue]);
   [self setPassword:[passwordBox stringValue]];
 }
 
