@@ -29,6 +29,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "JSON.h"
+#import "PreferencesController.h"
 
 @interface WaveStatusRetriever : NSObject {
 @private
@@ -45,6 +46,8 @@
   NSString* username;
   NSString* password;
   
+  PreferencesController* preferencesController;
+  
   BOOL loggingIn;
   BOOL loggedInAutomatically;
 }
@@ -52,6 +55,7 @@
 @property (retain) NSString* username;
 @property (retain) NSString* password;
 @property (retain) NSURL* currentURL;
+@property (retain) PreferencesController* preferencesController;
 
 - (WaveStatusRetriever*)initWithDelegate:(id)newDelegate;
 - (void)refreshWaveData:(id)sender;

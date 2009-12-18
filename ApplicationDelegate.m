@@ -34,9 +34,6 @@
 - (void) applicationDidFinishLaunching:(NSNotification *)notification
 {
   // Create tray menu.
-  NSLog(@"Creating tray menu...");
   trayMenu = [[TrayMenu alloc] init];
-  
-  NSLog(@"Done initialising.");
 }
 @end

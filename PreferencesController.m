@@ -193,4 +193,8 @@
 {
   [userPreferences setBool:newVal forKey:@"unreadInMenu"];
 }
+- (BOOL)debug
+{
+  return [userPreferences boolForKey:@"debug"];
+}
 @end

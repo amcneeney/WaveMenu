@@ -29,6 +29,16 @@
 
 #import <Cocoa/Cocoa.h>
 
+#define DEBUG(x) \
+  do \
+  { \
+    if ([preferencesController debug]) \
+    { \
+      NSLog x; \
+    } \
+  } \
+  while (false)
+
 @interface PreferencesController : NSWindowController {
 	NSDictionary* retrievalIntervalData;
   NSUserDefaults* userPreferences;
@@ -51,6 +61,7 @@
 - (void)setPassword:(NSString*)password;
 - (BOOL)unreadInMenu;
 - (void)setUnreadInMenu:(BOOL)newVal;
+- (BOOL)debug;
 
 @property (nonatomic,retain) id delegate;
 

@@ -31,7 +31,7 @@
 #import "Wave.h"
 
 @implementation WaveStatusRetriever
-@synthesize delegate, username, password, currentURL;
+@synthesize delegate, username, password, currentURL, preferencesController;
 
 - (WaveStatusRetriever*)init
 {
@@ -56,7 +56,7 @@
 - (void)refreshWaveData:(id)sender
 {
   // Grab contents of Wave site.
-  NSLog(@"Grabbing wave site data...");
+  DEBUG((@"Grabbing wave site data..."));
   NSURL* waveURL = [NSURL URLWithString:@"http://wave.google.com/"];
   [self setCurrentURL:waveURL];
   NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:waveURL
@@ -144,7 +144,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-  NSLog(@"Succeeded! Received %d bytes of data for %@",[waveData length], [self currentURL]);
+  DEBUG((@"Succeeded! Received %d bytes of data for %@",[waveData length], [[self currentURL] absoluteString]));
   
   // release the connection, and the data object
   waveDownloader = 0;
@@ -153,26 +153,31 @@
   // Convert to NSString.
   NSString* waveString = [[NSString alloc] initWithData:waveData encoding:NSUTF8StringEncoding];
   
-  //NSLog(@"Data:\n%@", waveString);
+  DEBUG((@"Data:\n%@", waveString));
   
   // Work out what kind of data we're dealing with.
-  if ([[[self currentURL] absoluteString] rangeOfString:@"ServiceLogin"].location != NSNotFound)
+  if ([[[self currentURL] absoluteString] rangeOfString:@"CheckCookie"].location != NSNotFound || 
+      [[[self currentURL] absoluteString] rangeOfString:@"ServiceLoginAuth"].location != NSNotFound)
+  {
+    DEBUG((@"Processing cookie check..."));
+    [self processCookieCheck:waveString];
+  }  
+  else if ([[[self currentURL] absoluteString] rangeOfString:@"ServiceLogin"].location != NSNotFound)
   {
     if (loggingIn)
     {
+      DEBUG((@"Processing login error..."));
       [self processLoginError:waveString];
     }
     else
     {
+      DEBUG((@"Processing login page..."));
       [self processLogin:waveString];
     }
   }
-  else if ([[[self currentURL] absoluteString] rangeOfString:@"CheckCookie"].location != NSNotFound)
-  {
-    [self processCookieCheck:waveString];
-  }
   else
   {
+    DEBUG((@"Processing wave data..."));
     [self processWaveData:waveString];
   }
 }
@@ -287,7 +292,7 @@
   }
 
   // Display data.
-  NSLog(@"Done parsing wave data.");
+  DEBUG((@"Done parsing wave data."));
   [waveData release];
 }
 
@@ -459,7 +464,7 @@
   }
   
   // If we got here, then we haven't found the error.
-  NSLog(@"Got login error:\n%@", waveString);
+  DEBUG((@"Got login error:\n%@", waveString));
   if (delegate && [delegate respondsToSelector:@selector(waveDataRetrievalError:)])
   {
     NSError* err = [NSError
@@ -507,7 +512,7 @@
             willSendRequest:(NSURLRequest *)request
            redirectResponse:(NSURLResponse *)redirectResponse
 {
-  //NSLog(@"Got redirect: %@", [[request URL] absoluteString]);
+  DEBUG((@"Got redirect: %@", [[request URL] absoluteString]));
   [self setCurrentURL:[request URL]];
   return request;
 }
