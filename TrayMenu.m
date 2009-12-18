@@ -26,7 +26,7 @@
   _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:32];
   [_statusItem setMenu:menu];
   [_statusItem setHighlightMode:YES];
-  [_statusItem setToolTip:@"Google Wave"];
+  [_statusItem setToolTip:@"WaveMenu"];
   [_statusItem setImage:[NSImage imageNamed:@"WaveGrey"]];
   [_statusItem retain];
   
