@@ -89,7 +89,7 @@
 {
   if (aboutController == nil)
   {
-    aboutController = [[NSWindowController alloc] initWithWindowNibName:@"About"];
+    aboutController = [[AboutController alloc] initWithWindowNibName:@"About"];
   }
   [aboutController showWindow:self];
   [[aboutController window] makeKeyAndOrderFront:self];

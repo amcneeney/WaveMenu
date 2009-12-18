@@ -24,6 +24,8 @@
 		669ADE7C10DAFB33001B4E59 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 669ADE7410DAFB33001B4E59 /* SBJsonBase.m */; };
 		669ADE7D10DAFB33001B4E59 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 669ADE7610DAFB33001B4E59 /* SBJsonParser.m */; };
 		669ADE7E10DAFB33001B4E59 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 669ADE7810DAFB33001B4E59 /* SBJsonWriter.m */; };
+		669ADEA310DB1112001B4E59 /* WaveMenu.icns in Resources */ = {isa = PBXBuildFile; fileRef = 669ADEA210DB1112001B4E59 /* WaveMenu.icns */; };
+		669ADEAE10DB1465001B4E59 /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669ADEAD10DB1465001B4E59 /* AboutController.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -66,6 +68,9 @@
 		669ADE7610DAFB33001B4E59 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		669ADE7710DAFB33001B4E59 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		669ADE7810DAFB33001B4E59 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		669ADEA210DB1112001B4E59 /* WaveMenu.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = WaveMenu.icns; sourceTree = "<group>"; };
+		669ADEAC10DB1465001B4E59 /* AboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutController.h; sourceTree = "<group>"; };
+		669ADEAD10DB1465001B4E59 /* AboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* WaveMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -126,6 +131,7 @@
 		29B97314FDCFA39411CA2CEA /* WaveMenu */ = {
 			isa = PBXGroup;
 			children = (
+				669ADEAB10DB144D001B4E59 /* About Box */,
 				669ADBAF10D9AD2D001B4E59 /* Preferences */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -151,12 +157,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				669ADEA210DB1112001B4E59 /* WaveMenu.icns */,
 				669ADA7B10D9870D001B4E59 /* WaveColored.png */,
 				669ADA7C10D9870D001B4E59 /* WaveRed.png */,
 				6636061310D142B70013918E /* WaveGrey.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-				669ADB5810D99836001B4E59 /* About.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -198,6 +204,16 @@
 				669ADE7810DAFB33001B4E59 /* SBJsonWriter.m */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		669ADEAB10DB144D001B4E59 /* About Box */ = {
+			isa = PBXGroup;
+			children = (
+				669ADB5810D99836001B4E59 /* About.xib */,
+				669ADEAC10DB1465001B4E59 /* AboutController.h */,
+				669ADEAD10DB1465001B4E59 /* AboutController.m */,
+			);
+			name = "About Box";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,6 +265,7 @@
 				669ADA7E10D9870D001B4E59 /* WaveRed.png in Resources */,
 				669ADB4910D99745001B4E59 /* Preferences.xib in Resources */,
 				669ADB5910D99836001B4E59 /* About.xib in Resources */,
+				669ADEA310DB1112001B4E59 /* WaveMenu.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +288,7 @@
 				669ADE7C10DAFB33001B4E59 /* SBJsonBase.m in Sources */,
 				669ADE7D10DAFB33001B4E59 /* SBJsonParser.m in Sources */,
 				669ADE7E10DAFB33001B4E59 /* SBJsonWriter.m in Sources */,
+				669ADEAE10DB1465001B4E59 /* AboutController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
