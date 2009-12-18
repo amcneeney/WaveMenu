@@ -25,6 +25,7 @@
   NSString* password;
   
   BOOL loggingIn;
+  BOOL loggedInAutomatically;
 }
 @property (retain) id delegate;
 @property (retain) NSString* username;
@@ -39,5 +40,7 @@
 - (void)processLogin:(NSString*)waveString;
 - (void)processLoginError:(NSString*)waveString;
 - (void)processCookieCheck:(NSString*)waveString;
+
+- (void)clearCookiesIfAppropriate;
 
 @end

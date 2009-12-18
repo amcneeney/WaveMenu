@@ -18,6 +18,7 @@
   
   delegate = 0;
   waveDownloader = 0;
+  loggedInAutomatically = YES;
   
   jsonParser = [[[SBJSON alloc] init] retain];
   
@@ -53,6 +54,7 @@
   }
   
   loggingIn = NO;
+  loggedInAutomatically = YES;
   waveDownloader = [[NSURLConnection connectionWithRequest:theRequest delegate:self] retain];
   if (waveDownloader)
   {
@@ -364,6 +366,7 @@
   
   // Start actual login.
   loggingIn = YES;
+  loggedInAutomatically = NO;
   waveDownloader = [[NSURLConnection connectionWithRequest:theRequest delegate:self] retain];
   if (waveDownloader)
   {
@@ -376,6 +379,8 @@
 }
 -(void)processLoginError:(NSString*)waveString
 {
+  loggedInAutomatically = YES;
+  
   NSRange errorMessageRange = [waveString rangeOfString:@"<div class=\"errormsg\""];
   if (errorMessageRange.location != NSNotFound)
   {
@@ -484,5 +489,18 @@
   //NSLog(@"Got redirect: %@", [[request URL] absoluteString]);
   [self setCurrentURL:[request URL]];
   return request;
+}
+
+- (void)clearCookiesIfAppropriate
+{
+  if (!loggedInAutomatically)
+  {
+    NSHTTPCookieStorage* sharedCookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSHTTPCookie* cookie;
+    for (cookie in [sharedCookies cookiesForURL:[NSURL URLWithString:@"https://wave.google.com/wave/"]])
+    {
+      [sharedCookies deleteCookie:cookie];
+    }
+  }
 }
 @end

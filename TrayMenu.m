@@ -156,13 +156,13 @@
 {
   NSLog(@"Got username update");
   [statusRetriever setUsername:user];
-  // TODO clear cookies
+  [statusRetriever clearCookiesIfAppropriate];
 }
 - (void)wavePasswordUpdated:(NSString*)password
 {
   NSLog(@"Got password update");
   [statusRetriever setPassword:password];
-  // TODO clear cookies
+  [statusRetriever clearCookiesIfAppropriate];
 }
 - (void)waveRefreshIntervalUpdated:(NSNumber*)interval
 {
