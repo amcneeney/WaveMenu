@@ -56,7 +56,7 @@
 
   menuItem = [newMenu addItemWithTitle:@"About WaveMenu" action:@selector(openAboutWaveMenu:) keyEquivalent:@""];
   [menuItem setTarget:self];  
-  menuItem = [newMenu addItemWithTitle:@"Preferences" action:@selector(openPreferences:) keyEquivalent:@""];
+  menuItem = [newMenu addItemWithTitle:@"Preferences..." action:@selector(openPreferences:) keyEquivalent:@""];
   [menuItem setTarget:self];
   menuItem = [newMenu addItemWithTitle:@"Refresh Now" action:@selector(refreshWaveData:) keyEquivalent:@""];
   [menuItem setTarget:self];
