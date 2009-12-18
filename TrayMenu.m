@@ -91,14 +91,12 @@
   {
     aboutController = [[AboutController alloc] initWithWindowNibName:@"About"];
   }
-  [aboutController showWindow:self];
   [[aboutController window] makeKeyAndOrderFront:self];
   [NSApp activateIgnoringOtherApps:YES];
 }
 
 - (void)openPreferences:(id)sender
 {
-  // TODO allow window to be opened twice
   [[preferencesController window] makeKeyAndOrderFront:self];
   [NSApp activateIgnoringOtherApps:YES];
 }
