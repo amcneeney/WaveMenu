@@ -12,6 +12,8 @@
 #import "PreferencesController.h"
 
 @implementation TrayMenu
+@synthesize messageMenuItems;
+
 - (TrayMenu*) init
 {
   [super init];
@@ -110,11 +112,13 @@
 
 - (void)waveDataRetrievalStarted
 {
+  [self clearMessagesInMenu];
   [self updateStatusMessage:@"Retrieving data..."];
 }
 
 - (void)waveDataRetrievalError:(NSError*)error
 {
+  [self clearMessagesInMenu];
   [self updateStatusMessage:[error localizedDescription] withIcon:[NSImage imageNamed:@"WaveRed"]];
 }
 
@@ -133,6 +137,8 @@
       unreadMessages++;
     }
   }
+  // This should already by clear, but just to make sure.
+  [self clearMessagesInMenu];
   
   if (0 == unreadMessages)
   {
@@ -147,6 +153,31 @@
                                unreadMessages == 1 ? @"" : @"s"
                               ];
     [self updateStatusMessage:statusMessage withIcon:[NSImage imageNamed:@"WaveColored"]];
+
+    if ([preferencesController unreadInMenu])
+    {
+    	NSMutableArray* messagesInMenuConstruction = [NSMutableArray arrayWithCapacity:unreadMessages];
+    	NSMenuItem *menuItem;
+      NSInteger currIndex = 1;
+      for (wave in messages)
+      {
+        NSInteger uc = [wave unreadCount];
+        if (uc > 0)
+        {
+          // Add menu item.
+          menuItem = [menu
+                      insertItemWithTitle:[NSString stringWithFormat:@"%@ (%d)", [wave title], uc]
+                      action:nil
+                      keyEquivalent:@""
+                      atIndex:currIndex
+                      ];
+          [messagesInMenuConstruction addObject:menuItem];
+          currIndex++;
+        }
+      }
+      // Record list of menu items for later deletion.
+      [self setMessageMenuItems:[NSArray arrayWithArray:messagesInMenuConstruction]];
+    }
   }
 }
 
@@ -181,5 +212,19 @@
 {
   [self updateStatusMessage:message];
   [_statusItem setImage:icon];
+}
+
+- (void)clearMessagesInMenu
+{
+  NSArray* items = [self messageMenuItems];
+  if (items)
+  {
+    NSMenuItem *menuItem;
+    for (menuItem in items)
+    {
+      [menu removeItem:menuItem];
+    }
+  }
+  [self setMessageMenuItems:0];
 }
 @end

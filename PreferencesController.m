@@ -29,6 +29,7 @@
   NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                         [NSNumber numberWithInt:300], @"refreshInterval",
                         @"", @"username",
+                        [NSNumber numberWithInt:0], @"unreadInMenu",
                         nil
                         ];
   [userPreferences registerDefaults:dict];
@@ -163,5 +164,13 @@
   {
     [delegate performSelector:@selector(wavePasswordUpdated:) withObject:password];
   }  
+}
+- (BOOL)unreadInMenu
+{
+  return [userPreferences boolForKey:@"unreadInMenu"];
+}
+- (void)setUnreadInMenu:(BOOL)newVal
+{
+  [userPreferences setBool:newVal forKey:@"unreadInMenu"];
 }
 @end

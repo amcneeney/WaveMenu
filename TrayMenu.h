@@ -20,9 +20,12 @@
   PreferencesController* preferencesController;
   AboutController* aboutController;
   WaveStatusRetriever* statusRetriever;
+  NSArray* messageMenuItems;
 }
+@property (nonatomic,retain) NSArray* messageMenuItems;
+
 - (NSMenu*) createMenu;
 - (void)updateStatusMessage:(NSString*)message withIcon:(NSImage*)icon;
 - (void)updateStatusMessage:(NSString*)message;
-
+- (void)clearMessagesInMenu;
 @end

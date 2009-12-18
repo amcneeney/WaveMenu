@@ -28,6 +28,8 @@
 - (void)setUsername:(NSString*)newUser;
 - (NSString*)password;
 - (void)setPassword:(NSString*)password;
+- (BOOL)unreadInMenu;
+- (void)setUnreadInMenu:(BOOL)newVal;
 
 @property (nonatomic,retain) id delegate;
 
