@@ -193,6 +193,10 @@
 {
   [userPreferences setBool:newVal forKey:@"unreadInMenu"];
 }
+- (GrowlNotification)growlNotifications
+{
+  return [userPreferences integerForKey:@"growl"];
+}
 - (BOOL)debug
 {
   return [userPreferences boolForKey:@"debug"];

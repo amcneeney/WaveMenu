@@ -39,6 +39,12 @@
   } \
   while (false)
 
+typedef enum GrowlNotification {
+  GROWL_STICKY = 0,
+  GROWL_MOMENTARY = 1,
+  GROWL_NONE = 2
+} GrowlNotification;
+
 @interface PreferencesController : NSWindowController {
 	NSDictionary* retrievalIntervalData;
   NSUserDefaults* userPreferences;
@@ -61,6 +67,7 @@
 - (void)setPassword:(NSString*)password;
 - (BOOL)unreadInMenu;
 - (void)setUnreadInMenu:(BOOL)newVal;
+- (GrowlNotification)growlNotifications;
 - (BOOL)debug;
 
 @property (nonatomic,retain) id delegate;

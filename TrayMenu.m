@@ -171,39 +171,42 @@
       unreadBlips += uc;
       unreadMessages++;
 
-      BOOL requiresNotification = YES;
-      
-      // Check whether we already have notified for this message.
-      if (currentMessages != 0)
+      if ([preferencesController growlNotifications] != GROWL_NONE)
       {
-        Wave* oldWave;
-        for (oldWave in currentMessages)
+        BOOL requiresNotification = YES;
+        
+        // Check whether we already have notified for this message.
+        if (currentMessages != 0)
         {
-          if ([oldWave isSameWaveAs:wave])
+          Wave* oldWave;
+          for (oldWave in currentMessages)
           {
-            // Check whether number of blips have changed.
-            if ([oldWave unreadCount] == uc)
+            if ([oldWave isSameWaveAs:wave])
             {
-              requiresNotification = NO;
+              // Check whether number of blips have changed.
+              if ([oldWave unreadCount] == uc)
+              {
+                requiresNotification = NO;
+              }
+              break;
             }
-            break;
           }
         }
-      }
-      if (requiresNotification)
-      {
-        [GrowlApplicationBridge
-         notifyWithTitle:[wave title]
-         description:[NSString stringWithFormat:@"%d unread blip%@",
-                      uc,
-                      uc == 1 ? @"" : @"s"
-                     ]
-         notificationName:@"New blip"
-         iconData:nil
-         priority:0
-         isSticky:YES
-         clickContext:[wave link]
-        ];
+        if (requiresNotification)
+        {
+          [GrowlApplicationBridge
+           notifyWithTitle:[wave title]
+           description:[NSString stringWithFormat:@"%d unread blip%@",
+                        uc,
+                        uc == 1 ? @"" : @"s"
+                        ]
+           notificationName:@"New blip"
+           iconData:nil
+           priority:0
+           isSticky:([preferencesController growlNotifications] == GROWL_STICKY)
+           clickContext:[wave link]
+           ];
+        }
       }
     }
   }
