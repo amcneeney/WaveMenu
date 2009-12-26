@@ -36,6 +36,7 @@
   [super init];
   
   title = myTitle;
+  [title retain];
   unreadCount = urc;
   totalCount = tc;
   
@@ -52,5 +53,9 @@
 - (NSInteger) totalCount
 {
   return totalCount;
+}
+- (BOOL) isSameWaveAs:(Wave*)other
+{
+  return [title isEqualToString:[other title]];
 }
 @end

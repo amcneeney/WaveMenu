@@ -26,10 +26,25 @@
 		669ADE7E10DAFB33001B4E59 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 669ADE7810DAFB33001B4E59 /* SBJsonWriter.m */; };
 		669ADEA310DB1112001B4E59 /* WaveMenu.icns in Resources */ = {isa = PBXBuildFile; fileRef = 669ADEA210DB1112001B4E59 /* WaveMenu.icns */; };
 		669ADEAE10DB1465001B4E59 /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669ADEAD10DB1465001B4E59 /* AboutController.m */; };
+		66C33D5610E6AA800098673A /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C33D5510E6AA800098673A /* Growl.framework */; };
+		66C33D8110E6AB320098673A /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66C33D5510E6AA800098673A /* Growl.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		66C33D7D10E6AB100098673A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				66C33D8110E6AB320098673A /* Growl.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -71,6 +86,7 @@
 		669ADEA210DB1112001B4E59 /* WaveMenu.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = WaveMenu.icns; sourceTree = "<group>"; };
 		669ADEAC10DB1465001B4E59 /* AboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutController.h; sourceTree = "<group>"; };
 		669ADEAD10DB1465001B4E59 /* AboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutController.m; sourceTree = "<group>"; };
+		66C33D5510E6AA800098673A /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* WaveMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -82,6 +98,7 @@
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				669ADA9C10D98EC9001B4E59 /* Security.framework in Frameworks */,
+				66C33D5610E6AA800098673A /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +187,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66C33D5510E6AA800098673A /* Growl.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -226,6 +244,7 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				66C33D7D10E6AB100098673A /* CopyFiles */,
 			);
 			buildRules = (
 			);

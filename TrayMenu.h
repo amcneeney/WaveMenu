@@ -31,8 +31,9 @@
 #import "WaveStatusRetriever.h"
 #import "PreferencesController.h"
 #import "AboutController.h"
+#import "Growl/GrowlApplicationBridge.h"
 
-@interface TrayMenu : NSObject {
+@interface TrayMenu : NSObject <GrowlApplicationBridgeDelegate> {
 @private
   NSStatusItem* _statusItem;
   NSMenu* menu;
@@ -42,8 +43,10 @@
   AboutController* aboutController;
   WaveStatusRetriever* statusRetriever;
   NSArray* messageMenuItems;
+  NSArray* currentMessages;
 }
 @property (nonatomic,retain) NSArray* messageMenuItems;
+@property (nonatomic,retain) NSArray* currentMessages;
 
 - (NSMenu*) createMenu;
 - (void)updateStatusMessage:(NSString*)message withIcon:(NSImage*)icon;

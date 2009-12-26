@@ -49,6 +49,7 @@
 {
   [self init];
   delegate = newDelegate;
+  [delegate retain];
   
   return self;
 }

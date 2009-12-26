@@ -39,4 +39,5 @@
 - (NSString*) title;
 - (NSInteger) unreadCount;
 - (NSInteger) totalCount;
+- (BOOL) isSameWaveAs:(Wave*)other;
 @end

@@ -33,7 +33,7 @@
 #import "PreferencesController.h"
 
 @implementation TrayMenu
-@synthesize messageMenuItems;
+@synthesize messageMenuItems, currentMessages;
 
 - (TrayMenu*) init
 {
@@ -59,6 +59,12 @@
   [statusRetriever setUsername:[preferencesController username]];
   [statusRetriever setPreferencesController:preferencesController];
   [statusRetriever startRunLoopWithInterval:[[preferencesController refreshInterval] integerValue]];
+  
+  currentMessages = 0;
+  messageMenuItems = 0;
+  
+  // Start Growl link.
+  [GrowlApplicationBridge setGrowlDelegate:self];
   
   DEBUG((@"Done initialising."));
   
@@ -159,6 +165,41 @@
     {
       unreadBlips += uc;
       unreadMessages++;
+
+      BOOL requiresNotification = YES;
+      
+      // Check whether we already have notified for this message.
+      if (currentMessages != 0)
+      {
+        Wave* oldWave;
+        for (oldWave in currentMessages)
+        {
+          if ([oldWave isSameWaveAs:wave])
+          {
+            // Check whether number of blips have changed.
+            if ([oldWave unreadCount] == uc)
+            {
+              requiresNotification = NO;
+            }
+            break;
+          }
+        }
+      }
+      if (requiresNotification)
+      {
+        [GrowlApplicationBridge
+         notifyWithTitle:[wave title]
+         description:[NSString stringWithFormat:@"%d unread blip%@",
+                      uc,
+                      uc == 1 ? @"" : @"s"
+                     ]
+         notificationName:@"New blip"
+         iconData:nil
+         priority:0
+         isSticky:NO
+         clickContext:nil
+        ];
+      }
     }
   }
   // This should already by clear, but just to make sure.
@@ -203,6 +244,9 @@
       [self setMessageMenuItems:[NSArray arrayWithArray:messagesInMenuConstruction]];
     }
   }
+  
+  // Set menu items.
+  [self setCurrentMessages:messages];
 }
 
 #pragma mark Preference update delegate methods
@@ -250,5 +294,22 @@
     }
   }
   [self setMessageMenuItems:0];
+}
+
+#pragma mark Growl delegates
+
+- (NSDictionary *) registrationDictionaryForGrowl
+{
+  NSArray* notificationTypes = [NSArray arrayWithObjects:@"New blip", nil];
+  return [NSDictionary dictionaryWithObjectsAndKeys:
+          notificationTypes, GROWL_NOTIFICATIONS_ALL,
+          notificationTypes, GROWL_NOTIFICATIONS_DEFAULT,
+          nil
+         ];
+}
+
+- (NSString *) applicationNameForGrowl
+{
+  return @"WaveMenu";
 }
 @end
