@@ -228,10 +228,12 @@
         for (mess in (NSArray*)messages)
         {
           //NSLog(@"Got message: %@", mess);
+          id messID = [mess objectForKey:@"1"];
           id totalCountNum = [mess objectForKey:@"6"];
           id unreadCountNum = [mess objectForKey:@"7"];
           id metaData = [mess objectForKey:@"9"];
-          if (metaData && [metaData isKindOfClass:[NSDictionary class]] &&
+          if (messID && [messID isKindOfClass:[NSString class]] &&
+              metaData && [metaData isKindOfClass:[NSDictionary class]] &&
               totalCountNum && [totalCountNum isKindOfClass:[NSDecimalNumber class]] &&
               unreadCountNum && [unreadCountNum isKindOfClass:[NSDecimalNumber class]])
           {
@@ -243,7 +245,7 @@
               if (totalCount >= unreadCount && totalCount > 0 && unreadCount >= 0)
               {
                 //NSLog(@"Got message %d/%d: %@", unreadCount, totalCount, title);
-                [allMessages addObject:[[Wave alloc] initWithTitle:title unreadCount:unreadCount totalCount:totalCount]];
+                [allMessages addObject:[[Wave alloc] initWithTitle:title unreadCount:unreadCount totalCount:totalCount messageID:messID]];
               }
               else
               {

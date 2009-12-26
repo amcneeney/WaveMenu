@@ -34,8 +34,11 @@
 	NSString* title;
   NSInteger unreadCount;
   NSInteger totalCount;
+  NSString* messageID;
 }
-- (Wave*)initWithTitle:(NSString*)myTitle unreadCount:(NSInteger)urc totalCount:(NSInteger)tc;
+@property (readonly) NSString* messageID;
+
+- (Wave*)initWithTitle:(NSString*)myTitle unreadCount:(NSInteger)urc totalCount:(NSInteger)tc messageID:(NSString*)newID;
 - (NSString*) title;
 - (NSInteger) unreadCount;
 - (NSInteger) totalCount;

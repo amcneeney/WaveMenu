@@ -31,14 +31,18 @@
 
 
 @implementation Wave
-- (Wave*)initWithTitle:(NSString*)myTitle unreadCount:(NSInteger)urc totalCount:(NSInteger)tc
+@synthesize messageID;
+
+- (Wave*)initWithTitle:(NSString*)myTitle unreadCount:(NSInteger)urc totalCount:(NSInteger)tc messageID:(NSString*)newID
 {
   [super init];
   
   title = myTitle;
   [title retain];
   unreadCount = urc;
-  totalCount = tc;
+  totalCount = tc;  
+  messageID = newID;
+  [messageID retain];
   
   return self;
 }
@@ -56,6 +60,6 @@
 }
 - (BOOL) isSameWaveAs:(Wave*)other
 {
-  return [title isEqualToString:[other title]];
+  return [messageID isEqualToString:[other messageID]];
 }
 @end
