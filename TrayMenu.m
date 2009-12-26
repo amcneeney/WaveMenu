@@ -138,6 +138,11 @@
   [statusRetriever refreshWaveData:sender];
 }
 
+- (void)openSpecificWave:(id)sender
+{
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[[sender representedObject] link]]];
+}
+
 #pragma mark Wave Retrieval Delegate Methods
 
 - (void)waveDataRetrievalStarted
@@ -232,10 +237,12 @@
           // Add menu item.
           menuItem = [menu
                       insertItemWithTitle:[NSString stringWithFormat:@"%@ (%d)", [wave title], uc]
-                      action:nil
+                      action:@selector(openSpecificWave:)
                       keyEquivalent:@""
                       atIndex:currIndex
                       ];
+          [menuItem setRepresentedObject:wave];
+          [menuItem setTarget:self];
           [messagesInMenuConstruction addObject:menuItem];
           currIndex++;
         }
