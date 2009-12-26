@@ -62,4 +62,11 @@
 {
   return [messageID isEqualToString:[other messageID]];
 }
+
+- (NSString*) link
+{
+  return [NSString stringWithFormat:@"https://wave.google.com/wave/?pli=1#restored:wave:%@",
+          [messageID stringByReplacingOccurrencesOfString:@"+" withString:@"%252B"]
+         ];
+}
 @end

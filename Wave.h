@@ -43,4 +43,5 @@
 - (NSInteger) unreadCount;
 - (NSInteger) totalCount;
 - (BOOL) isSameWaveAs:(Wave*)other;
+- (NSString*) link;
 @end

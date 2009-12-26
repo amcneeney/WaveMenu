@@ -197,7 +197,7 @@
          iconData:nil
          priority:0
          isSticky:NO
-         clickContext:nil
+         clickContext:[wave link]
         ];
       }
     }
@@ -311,5 +311,10 @@
 - (NSString *) applicationNameForGrowl
 {
   return @"WaveMenu";
+}
+
+- (void) growlNotificationWasClicked:(NSString*)waveURL
+{
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:waveURL]];
 }
 @end
