@@ -196,7 +196,7 @@
          notificationName:@"New blip"
          iconData:nil
          priority:0
-         isSticky:NO
+         isSticky:YES
          clickContext:[wave link]
         ];
       }
